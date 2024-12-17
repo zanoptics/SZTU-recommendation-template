@@ -1,0 +1,174 @@
+% main.tex - an example LaTeX file to demonstrate the usage of SZTUletter.cls
+%
+% Template originally created by Brian Wood (brian.wood@oregonstate.edu). Please feel free to send suggestions for improvements; this template/cls may not be perfectly optimized.
+% Modified by Shaozuo Yu (AugustYum@outlook.com) to suit the requirements of Tongji students.
+% Further modifications and maintenance by Rizhong Lin (rizhonglin@tongji.edu.cn) as of May 22, 2023.
+% Modified by zanoptics (zanzhao2021@outlook.com) to fit the need of SZTU students based on the Rizhong Lin (rizhonglin@tongji.edu.cn) Tongji version, 17 December 2024.
+
+\documentclass[12pt]{SZTUletter}
+\usepackage{fontspec}
+\usepackage{tikz}
+\usepackage{xcolor}
+  \definecolor{SZTUblue}{RGB}{0, 53, 146} %rgb[0,1] RGB[0,255]
+\usepackage[english]{babel}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+hidelinks,
+}
+
+
+%%%%%%%%%%%%  Notes %%%%%%%%%%%%%%
+% Ctrl + F search "LOOK TODO" to find probable places that need change.
+%%%%%%%%%%%%  Notes %%%%%%%%%%%%%%
+
+% Set custom font here. Tongji uses Source Serif Pro.
+% Comment this line out if you do not have Source Serif Pro installed;
+% computer modern (or your default font) will be substituted.
+\setmainfont{Source Serif Pro} % LOOK TODO maybe needed to be installed
+
+% Set up fancy page style for page numbering
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\rhead{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+
+\newcommand{\watermark}[3]{\AddToShipoutPictureBG{
+\parbox[b][\paperheight]{\paperwidth}{
+\vfill%
+\centering%
+\begin{tikzpicture}
+    \path (0,0) -- (\paperwidth,\paperheight);
+    \node[opacity=.02] at (current page.center) % LOOK TODO the transparency
+    {\includegraphics[width=0.55\textwidth]{image/SZTU_logo.png}}; % LOOK TODO path
+\end{tikzpicture}
+\vfill}}}
+
+% Define custom coordinate system for \tikz
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+    \parsecomma#1\endparsecomma
+    \pgfpointanchor{current page}{north east}
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfpointanchor{current page}{south west}
+    \pgf@xb=\pgf@x%
+    \pgf@yb=\pgf@y%
+    \pgfmathparse{(\pgf@xc-\pgf@xb)/2.*\page@x+(\pgf@xc+\pgf@xb)/2.}
+    \expandafter\pgf@x\expandafter=\pgfmathresult pt
+    \pgfmathparse{(\pgf@yc-\pgf@yb)/2.*\page@y+(\pgf@yc+\pgf@yb)/2.}
+    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+%%%%%%%%%%% Put Personal Information Here %%%%%%%%%%%
+\def\name{Max Planck,\\
+Associate Professor,\\
+College of Engineering Physics, \\
+Center for Intense Laser Application Technology, \\
+Shenzhen Technology University
+}
+
+%%%%%%%%%%%%  Additional Contact Information %%%%%%%%%%%
+\def\Where{%
+    \textbf{\color{SZTUblue}
+    \href{https://cep.sztu.edu.cn/index.htm}{College of Engineering Physics}, \\
+    Center for Intense Laser \\ Application Technology, \\
+    \href{https://english.sztu.edu.cn/}{Shenzhen Technology University}}
+}
+
+\def\Address{
+    3002 Lantian Road,\\
+    Pingshan District,
+}
+
+\def\CityZip{Shenzhen Guangdong, China, 518118}
+
+\def\TEL{\textbf{\color{SZTUblue}Phone}: +86 0755 2325 6562}
+
+\def\Email{\textbf{\color{SZTUblue}E-mail}: \href{mailto:name@sztu.edu.cn}{name@sztu.edu.cn}} % LOOK TODO path
+
+
+% ^^^ remember to alter the \def\newaddress below at the same time;
+
+%%%%%%%%%%%%%%%%  Footer information  %%%%%%%%%%%%%%%%%%
+% \def\school{\small{
+%     Tongji Univ. $\cdot$
+%     Dept. of Comp. Sci. \& Tech. $\cdot$
+%     Zhixin Bldg., 4800 Cao'an Hwy. $\cdot$
+%     Shanghai, 201804}
+% }
+
+% \cfoot{\school}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%  Signature line  %%%%%%%%%%%%%%%%%%%%%
+\signature{
+    \vspace{-12mm}\includegraphics[scale=0.40]{image/signature_block_blank.pdf}\\\vspace{-2mm}
+    \name
+} % LOOK TODO the signature
+
+% This block sets up the address on the right-hand side of the header.
+\address{}
+
+\def\newaddress{%
+    \Where\\
+    \Address\\
+    \CityZip\\
+    \TEL\\
+    \Email\\
+}
+
+%%%%%%%%%%%  DATE  %%%%%%%%%%%%%%%%%%%%%%%%%
+\date{\vspace{10mm} \today}
+
+%%%%%%%%%%% Set the subject here if there is one  %%%%
+% \subject{Letter of Recommendation} % optional subject line
+
+% \usepackage{hyperref}
+% \hypersetup{
+%     colorlinks=true,
+%     linkcolor=blue,
+%     filecolor=blue,      
+%     urlcolor=blue,
+%     citecolor=cyan,
+% }
+
+\begin{document}
+
+\begin{letter}{
+    Some University\\
+    Some Address\\
+    SomeTown, SomeState SomeZip
+}
+
+\begin{tikzpicture}[remember picture,overlay,,every node/.style={anchor=center}]
+\node[text width=7cm] at (page cs:0.5,0.73){\small \newaddress}; % LOOK TODO change the position of header text.
+\end{tikzpicture}
+
+\opening{Dear Application Committee,}
+
+% Remove it if you do not want the Tongji logo watermark
+\watermark{}{}{}
+
+\lipsum[1-6]
+
+\closing{Sincerely,}
+
+% Comment out/in the lines below as necessary
+%\encl{If an enclosure is provided, let them know what it is.}
+
+%\ps{A postscript if that is a thing you do.}
+
+%\cc{Someone Who Cares (and is copied).}
+
+\end{letter}
+
+\end{document}
