@@ -68,31 +68,29 @@ hidelinks,
 \makeatother
 
 %%%%%%%%%%% Put Personal Information Here %%%%%%%%%%%
-\def\name{Max Planck,\\
-Associate Professor,\\
+\def\name{Prof. Albert Einstein,\\
 College of Engineering Physics, \\
-Center for Intense Laser Application Technology, \\
 Shenzhen Technology University
 }
 
+\def\Professor{\scalebox{1.1}{\textbf{Prof. Albert Einstein}}}
+
 %%%%%%%%%%%%  Additional Contact Information %%%%%%%%%%%
-\def\Where{%
-    \textbf{\color{SZTUblue}
-    \href{https://cep.sztu.edu.cn/index.htm}{College of Engineering Physics}, \\
-    Center for Intense Laser \\ Application Technology, \\
+\def\Where{\textbf{\href{https://cep.sztu.edu.cn/index.htm}{College of Engineering Physics}, \\
     \href{https://english.sztu.edu.cn/}{Shenzhen Technology University}}
 }
 
 \def\Address{
-    3002 Lantian Road,\\
+    3002 Lantian Road,
     Pingshan District,
 }
 
-\def\CityZip{Shenzhen Guangdong, China, 518118}
+\def\CityZip{Shenzhen Guangdong, \\ 518118, China }
 
-\def\TEL{\textbf{\color{SZTUblue}Phone}: +86 0755 2325 6562}
+\def\TEL{\textbf{Phone}: +86 0123 4567 8910}
 
-\def\Email{\textbf{\color{SZTUblue}E-mail}: \href{mailto:name@sztu.edu.cn}{name@sztu.edu.cn}} % LOOK TODO path
+\def\Email{\textbf{E-mail}: \href{mailto:professor@edu.cn}{professor@edu.cn}} % LOOK TODO path
+
 
 
 % ^^^ remember to alter the \def\newaddress below at the same time;
@@ -119,6 +117,7 @@ Shenzhen Technology University
 \address{}
 
 \def\newaddress{%
+    \Professor\\
     \Where\\
     \Address\\
     \CityZip\\

@@ -67,7 +67,7 @@
                 {\parbox[c][2.0in][c]{3.0in}{\hfill} 
                 \ClassWarning{SZTUletter}{SZTU_header.pdf COULD NOT BE FOUND!}}
         } &
-        \parbox[c][1.8in][c]{2in}{{~}\\}  % LOOK TODO first param: change the length of the vetical line if needed after you replace header text with your own infomation.
+        \parbox[c][1.65in][c]{2in}{{~}\\}  % LOOK TODO first param: change the length of the vetical line if needed after you replace header text with your own infomation.
     \end{tabular*}%
 }
 
@@ -120,7 +120,8 @@
 \renewcommand{\closing}[1]{\par\nobreak\vspace{\parskip}%
     \stopbreaks
     \noindent
-    \hfill\begin{varwidth}{\textwidth}\raggedright
+    % \hfill  % LOOK TODO comment out if you want the signature to be on the right.
+    \begin{varwidth}{\textwidth}\raggedright
     \ignorespaces #1\\[4\medskipamount]%
     \ifx\@empty\fromsig
         \fromname

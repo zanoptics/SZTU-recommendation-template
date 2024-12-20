@@ -26,6 +26,7 @@
 
 - 添加了href超链接，点击单位自动跳转
 - 去掉了页脚\cfoot
+- 落款靠左 \closing命令处注释掉\hfill
 
 ## :three: 示例
 
